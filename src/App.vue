@@ -22,41 +22,39 @@ export default {
       }
     }
   },
-  
-  methods: {
 
-   getMovies() {
-      console.log('filter all movies');
-      const url = this.state.base_url + `?api_key=${this.state.api_key}&query=${this.state.query}`;
-      console.log(url);
-      this.state.fetchMovies(url)
-   }
-  
-  }
+   methods: {
+    getMoviesAndTVShows() {
+        this.state.results = [];
+        this.state.fetchMovies();
+        this.state.fetchTVShows();
+      }
+    }
 }
+
 </script>
 
 <template>
   
-    <input  type="search" v-model="state.query">
-    <button @click="getMovies">Search</button>
+    <div>
+    <input type="search" v-model="state.query">
+    <button @click="getMoviesAndTVShows">Search</button>
 
     <ol>
-      <li v-for="(movie, index) in state.movies" :key="index">
-        {{movie.title}}
-        {{movie.original_title}}
-        <img v-if="languages[movie.original_language]" :src="languages[movie.original_language].flag" alt="Country Flag" style="width: 20px; height: auto;">
-        <span v-else>{{movie.original_language}}</span>
-        {{movie.vote_average}}
+      <li v-for="(result, index) in state.results" :key="index">
+        {{result.title || result.name}}
+        {{result.original_title || result.original_name}}
+        <img v-if="languages[result.original_language]" :src="languages[result.original_language]
+        .flag" alt="Country Flag" style="width: 20px; height: auto;">
+        <span v-else>{{result.original_language}}</span>
+        {{result.vote_average}}
       </li>
     </ol>
+  </div>
     
 </template>
 
 <style lang="scss" >
 
-
-
-  
 </style>
         
