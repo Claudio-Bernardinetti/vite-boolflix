@@ -6,48 +6,38 @@ export default {
   
   data() {
     return {
-      // Dichiara le variabili di dati che verranno utilizzate nel componente
-      searchQuery: state.searchQuery,
-      movies: state.movies,
-      title: state.title,
-      original_title: state.original_title,
-      original_language: state.original_language,
-      vote_average: state.vote_average
+      state
     }
   },
 
   methods: {
-    // Metodo per cercare film per titolo
-    searchMoviesByTitle() {
-      const title = this.searchQuery; // Usa la query di ricerca dell'utente
-      state.searchMoviesByTitle(title);// Chiama il metodo searchMoviesByTitle dello stato
-    }
+   getMovies() {
+      console.log('filter all movies');
+      const url = this.state.base_url + `?api_key=${this.state.api_key}&query=${this.state.query}`;
+      console.log(url);
+      this.state.fetchMovies(url)
+   }
   },
 
-  created() {
-    // Se esistono dati nel local storage, utilizzali per inizializzare le variabili di dati
-    if (localStorage.getItem('title')) {
-      this.title = localStorage.getItem('title');
-      this.original_title = localStorage.getItem('original_title');
-      this.original_language = localStorage.getItem('original_language');
-      this.vote_average = parseFloat(localStorage.getItem('vote_average'));
-    }
-  }
+  
 }
 </script>
 
 <template>
-  <div>
-    <input v-model="searchQuery" type="text" placeholder="Search for a movie...">
-    <button @click="searchMoviesByTitle">Search</button>
-    <!-- Visualizza i dettagli di ogni film nell'array dei film -->
-    <div v-for="movie in movies" :key="movie.id">
-      <h2>{{ movie.title }}</h2>
-      <p>Original Title: {{ movie.original_title }}</p>
-      <p>Language: {{ movie.original_language }}</p>
-      <p>Vote Average: {{ movie.vote_average }}</p>
-    </div>
-  </div>
+  
+    <input  type="search" v-model="state.query">
+    <button @click="getMovies">Search</button>
+
+    <ol>
+      <li v-for="(movie, index) in state.movies" :key="index">
+        {{movie.title}}
+        {{movie.original_title}}
+        {{movie.original_language}}
+        {{movie.vote_average}}
+
+      </li>
+    </ol>
+    
 </template>
 
 <style>
