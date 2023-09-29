@@ -36,7 +36,7 @@ export default {
 
 <template>
   
-    <div>
+     <div>
     <input type="search" v-model="state.query">
     <button @click="getMoviesAndTVShows">Search</button>
 
@@ -44,8 +44,9 @@ export default {
       <li v-for="(result, index) in state.results" :key="index">
         {{result.title || result.name}}
         {{result.original_title || result.original_name}}
-        <img v-if="languages[result.original_language]" :src="languages[result.original_language]
-        .flag" alt="Country Flag" style="width: 20px; height: auto;">
+        <!-- Aggiungi un controllo per verificare se poster_path è null -->
+        <img v-if="result.poster_path" :src="`https://image.tmdb.org/t/p/w500${result.poster_path}`" alt="Poster">
+        <img v-if="languages[result.original_language]" :src="languages[result.original_language].flag" alt="Country Flag" style="width: 20px; height: auto;">
         <span v-else>{{result.original_language}}</span>
         {{result.vote_average}}
       </li>
