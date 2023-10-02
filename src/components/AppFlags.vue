@@ -25,12 +25,24 @@ import esFlag from '../country-flag-icons/3x2/ES.svg';
     
         computed: {
         flag() {
-            return this.languages[this.languageCode].flag;
-            }
-        },
-    };
+      if (this.languages[this.languageCode]) {
+        this.$emit('updateFlag', this.languages[this.languageCode].flag);
+        return this.languages[this.languageCode].flag;
+      } else {
+        this.$emit('updateFlag', null);
+        return null; // o un valore predefinito
+        }
+      }
+    },
+    methods: {
+    handleError(event) {
+      event.target.style.display = 'none';
+    }
+  }
+    
+};
 </script>
 
 <template>
-    <img :src="flag" :alt="`Flag of ${languageCode}`">
+    <img v-if="flag" :src="flag" :alt="`Flag of ${languageCode}`">
 </template>

@@ -15,14 +15,14 @@ export default {
       return {
         state,
         search:'',
-        
+        languageCode: '',
       }
     },
-    computed: {
-    languageCode() {
-      return this.state.languageCode;
-      }
-    },
+    // computed: {
+    // languageCode() {
+    //   return this.state.languageCode;
+    //   }
+    // },
 
     methods: {
       handleSearch(query) {

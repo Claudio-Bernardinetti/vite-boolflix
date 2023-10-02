@@ -3,6 +3,7 @@ import AppFlags from './AppFlags.vue'
 import { state } from '../state';
 export default {
     name: 'AppMain',
+    props: ['languageCode'],
     components: {
           AppFlags
     },
@@ -10,9 +11,15 @@ export default {
     data() {
     return {
       state,
-      
+      flag: null,
     }
   },
+  methods: {
+    handleUpdateFlag(newFlag) {
+      this.flag = newFlag;
+    }
+  }
+  
     
 };
 </script>
@@ -37,7 +44,10 @@ export default {
             <div class="overview m-2">
               <p><strong>Overview:</strong> {{result.overview}}</p>
             </div>
-            <p><strong>Lingua:</strong> {{ result.original_language }}</p>
+            <div class="language_container">
+              <p><strong>Lingua:</strong> <span v-if="!flag || flag === ''">{{ result.original_language }}</span></p>
+              <AppFlags class="flag" :language-code="result.original_language" @updateFlag="handleUpdateFlag"></AppFlags>
+            </div>
           </div>
         </div>
       </div>
@@ -49,8 +59,8 @@ export default {
         <div class="poster-container">
           <img v-if="result.poster_path" :src="`https://image.tmdb.org/t/p/w500${result.poster_path}`" alt="Poster">
           <div class="overlay p-2">
-            <p>Titolo:{{result.name}}</p>
-            <p>Titolo originale:{{result.original_name}}</p>
+            <p><strong>Titolo:</strong> {{result.name}}</p>
+            <p><strong>Titolo originale:</strong> {{result.original_name}}</p>
             <p class="m-0"><strong>Voto:</strong> </p>
             <i v-for="n in Math.ceil(result.vote_average / 2)" :key="'full-star-' + index + '-' + n">
               <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" class="gold-star">
@@ -58,10 +68,12 @@ export default {
               </svg>
              </i>
             <div class="overview m-2">
-              <p>Overview: {{result.overview}}</p>
+              <p><strong>Overview:</strong> {{result.overview}}</p>
             </div>
-            <p><strong>Lingua:</strong> {{ result.original_language }}</p>
-            <!-- <AppFlags :language-code="state.languageCode"></AppFlags> -->
+            <div class="language_container">
+              <p><strong>Lingua:</strong> {{ result.original_language }}</p>
+              <AppFlags class="flag" :language-code="result.original_language" @updateFlag="handleUpdateFlag"></AppFlags>
+            </div>
           </div>
         </div>
       </div>
@@ -113,6 +125,15 @@ export default {
 
   .gold-star {
     fill: gold;
+  }
+  .flag {
+    width: 30px;
+    height: 25px;
+    margin-left: 10px;
+  }
+  .language_container {
+  display: flex;
+  align-content: center;
   }
 }
 </style>
