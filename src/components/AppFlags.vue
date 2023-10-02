@@ -1,4 +1,5 @@
 <script>
+import { state } from '../state'
 import gbFlag from '../country-flag-icons/3x2/GB.svg';
 import frFlag from '../country-flag-icons/3x2/FR.svg';
 import itFlag from '../country-flag-icons/3x2/IT.svg';
@@ -19,9 +20,7 @@ import esFlag from '../country-flag-icons/3x2/ES.svg';
                 'ko': { country: 'ko', flag: koFlag },
                 'es': { country: 'es', flag: esFlag },
             },
-
-            flag: ''
-            }
+        }
         },
     
         computed: {
@@ -33,5 +32,5 @@ import esFlag from '../country-flag-icons/3x2/ES.svg';
 </script>
 
 <template>
-  
+    <img :src="flag" :alt="`Flag of ${languageCode}`">
 </template>

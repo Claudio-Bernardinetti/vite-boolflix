@@ -9,7 +9,7 @@ export const state = reactive({
   query: '',
   movieResults: [], // Risultati dei film
   tvShowResults: [], // Risultati delle serie TV
-  language: '',
+  languageCode: '',
   
   // action
   fetchMovies(){

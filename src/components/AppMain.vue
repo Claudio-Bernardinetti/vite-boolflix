@@ -61,6 +61,7 @@ export default {
               <p>Overview: {{result.overview}}</p>
             </div>
             <p><strong>Lingua:</strong> {{ result.original_language }}</p>
+            <!-- <AppFlags :language-code="state.languageCode"></AppFlags> -->
           </div>
         </div>
       </div>
