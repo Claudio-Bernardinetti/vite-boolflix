@@ -7,14 +7,14 @@ import koFlag from '../country-flag-icons/3x2/KR.svg';
 import esFlag from '../country-flag-icons/3x2/ES.svg';
 import jpFlag from '../country-flag-icons/3x2/JP.svg';
 
-    export default {
-        name: 'AppFlags',
-        props: ['languageCode'],
+export default {
+    name: 'AppFlags', // Nome del componente
+    props: ['languageCode'], // Proprietà passate al componente
     
-        data() {
-            return {
-            state,
-            languages: {
+    data() {
+        return {
+            state, // Lo stato dell'applicazione
+            languages: { // Le lingue e le relative bandiere
                 'en': { country: 'en', flag: gbFlag },
                 'fr': { country: 'fr', flag: frFlag },
                 'it': { country: 'it', flag: itFlag },
@@ -23,14 +23,14 @@ import jpFlag from '../country-flag-icons/3x2/JP.svg';
                 'ja': { country: 'jp', flag: jpFlag },
             },
         }
-        },
+    },
     
-        computed: {
-        flag() {
-            if (this.languages[this.languageCode]) {
-                return this.languages[this.languageCode].flag;
+    computed: {
+        flag() { // Calcola la bandiera da mostrare
+            if (this.languages[this.languageCode]) { // Se la lingua è presente nell'oggetto languages
+                return this.languages[this.languageCode].flag; // Restituisci la bandiera corrispondente
             } else {
-                return null;
+                return null; // Altrimenti restituisci null
             }
         }
     }
@@ -38,5 +38,5 @@ import jpFlag from '../country-flag-icons/3x2/JP.svg';
 </script>
 
 <template>
-    <img v-if="flag" :src="flag" :alt="`Flag of ${languageCode}`">
+    <img v-if="flag" :src="flag" :alt="`Flag of ${languageCode}`"> <!-- Mostra la bandiera se è disponibile -->
 </template>

@@ -1,27 +1,27 @@
 <script>
 // import AppFlags from './AppFlags.vue'
-import { state } from '../state';
+import { state } from '../state'; // Importa lo stato dell'applicazione
+
 export default {
-  
-   name: 'AppHeader',
+   name: 'AppHeader', // Nome del componente
     data() {
         return {
-            state,
-            message:'',
+            state, // Lo stato dell'applicazione
+            message:'', // Il messaggio da inviare
         }
     },
-    mounted() {
-    this.state.query = 'Hello';
-    this.search();
+    mounted() { // Quando il componente viene montato
+    this.state.query = 'Hello'; // Imposta la query di ricerca
+    this.search(); // Esegui la ricerca
     },
     methods: {
-      onSubmit() {
+      onSubmit() { // Quando il modulo viene inviato
       // Invia il tuo messaggio qui
-      console.log(this.message);
-      this.message = '';
+      console.log(this.message); // Stampa il messaggio sulla console
+      this.message = ''; // Resetta il messaggio
     },
-    search() {
-      this.$emit('search', this.state.query);
+    search() { // Esegui la ricerca
+      this.$emit('search', this.state.query); // Emetti un evento di ricerca con la query corrente
     }
   }
 };

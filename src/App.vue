@@ -5,52 +5,42 @@ import AppMain from './components/AppMain.vue'
 import AppFlags from './components/AppFlags.vue'
 
 export default {
-
   components:{
-     AppHeader,
-     AppMain,
-     AppFlags
+     AppHeader, // Importa il componente AppHeader
+     AppMain, // Importa il componente AppMain
+     AppFlags // Importa il componente AppFlags
     },
     data() {
       return {
-        state,
-        search:'',
-        languageCode: '',
+        state, // Lo stato dell'applicazione
+        search:'', // La query di ricerca
+        languageCode: '', // Il codice della lingua
       }
     },
-    // computed: {
-    // languageCode() {
-    //   return this.state.languageCode;
-    //   }
-    // },
-
     methods: {
-      handleSearch(query) {
-          this.state.query = query;
+      handleSearch(query) { // Gestisce la ricerca
+          this.state.query = query; // Imposta la query di ricerca
           
-          this.state.results = [];
-          this.state.fetchMovies();
-          this.state.fetchTVShows();
+          this.state.results = []; // Resetta i risultati
+          this.state.fetchMovies(); // Cerca i film
+          this.state.fetchTVShows(); // Cerca le serie TV
         }
       },
-      mounted() {
-  this.languageCode = this.state.languageCode;
+      mounted() { // Quando l'applicazione è montata
+  this.languageCode = this.state.languageCode; // Imposta il codice della lingua
  }
  };
 
 </script>
 
 <template>
-  <AppHeader @search="handleSearch"></AppHeader>
-  <AppMain :results="state.results">
-    <AppFlags :language-code="state.languageCode"></AppFlags>
+  <AppHeader @search="handleSearch"></AppHeader> <!-- Mostra l'header e gestisce l'evento di ricerca -->
+  <AppMain :results="state.results"> <!-- Mostra i risultati principali -->
+    <AppFlags :language-code="state.languageCode"></AppFlags> <!-- Mostra le bandiere delle lingue -->
   </AppMain>
-  
-     
-    
 </template>
 
 <style lang="scss" >
-
+  /* Qui puoi aggiungere i tuoi stili */
 </style>
         
