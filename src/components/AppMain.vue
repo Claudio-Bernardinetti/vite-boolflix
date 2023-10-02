@@ -45,7 +45,7 @@ export default {
               <p><strong>Overview:</strong> {{result.overview}}</p>
             </div>
             <div class="language_container">
-              <p><strong>Lingua:</strong> <span v-if="!flag || flag === ''">{{ result.original_language }}</span></p>
+              <p><strong>Lingua:</strong> <span v-if="!flag">{{ result.original_language }}</span></p>
               <AppFlags class="flag" :language-code="result.original_language" @updateFlag="handleUpdateFlag"></AppFlags>
             </div>
           </div>
@@ -71,7 +71,7 @@ export default {
               <p><strong>Overview:</strong> {{result.overview}}</p>
             </div>
             <div class="language_container">
-              <p><strong>Lingua:</strong> {{ result.original_language }}</p>
+              <p><strong>Lingua:</strong> <span v-if="!flag">{{ result.original_language }}</span></p>
               <AppFlags class="flag" :language-code="result.original_language" @updateFlag="handleUpdateFlag"></AppFlags>
             </div>
           </div>

@@ -13,7 +13,7 @@ export default {
     mounted() {
     this.state.query = 'Hello';
     this.search();
-  },
+    },
     methods: {
       onSubmit() {
       // Invia il tuo messaggio qui
