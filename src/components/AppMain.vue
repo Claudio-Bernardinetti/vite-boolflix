@@ -12,13 +12,16 @@ export default {
     data() {
     return {
       state, // Lo stato dell'applicazione
-      flag: null, // La bandiera da visualizzare
+      flags: [],
     }
   },
   methods: {
-    handleUpdateFlag(newFlag) { // Gestisce l'aggiornamento della bandiera
-      this.flag = newFlag; // Aggiorna la bandiera con il nuovo valore
+    handleUpdateFlag(newFlag, index) { // Gestisce l'aggiornamento della bandiera
+      this.$set(this.flags, index, newFlag); // Aggiorna la bandiera con il nuovo valore
     }
+  },
+  mounted() { // Quando l'applicazione è montata
+    this.flags[0] = state.it_flag; // Imposta la bandiera italiana
   }
 };
 </script>
@@ -45,13 +48,15 @@ export default {
             <div class="overview m-2">
               <p><strong>Overview:</strong> {{result.overview}}</p>
             </div>
-            <div class="language_container">
-              <p><strong>Lingua:</strong> <span v-if="!flag">{{ result.original_language }}</span></p>
-              <AppFlags class="flag" :language-code="result.original_language" @updateFlag="handleUpdateFlag"></AppFlags>
-            </div>
+              <div class="language_container">
+                <p><strong>Lingua:&nbsp;</strong>      
+                </p>
+                <AppFlags class="flag" :language-code="result.original_language" @updateFlag="(newFlag) => handleUpdateFlag(newFlag, index)"></AppFlags>
+              </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
     <!--  TV shows -->
     <h3 class="px-3 text-black">Serie TV</h3>
@@ -73,14 +78,15 @@ export default {
               <p><strong>Overview:</strong> {{result.overview}}</p>
             </div>
             <div class="language_container">
-              <p><strong>Lingua:</strong> <span v-if="!flag">{{ result.original_language }}</span></p>
-              <AppFlags class="flag" :language-code="result.original_language" @updateFlag="handleUpdateFlag"></AppFlags>
-            </div>
+                <p><strong>Lingua:&nbsp;</strong>
+                </p>
+                <AppFlags class="flag" :language-code="result.original_language" @updateFlag="(newFlag) => handleUpdateFlag(newFlag, index)"></AppFlags>
+              </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  
   
 </template>
 
@@ -130,8 +136,9 @@ export default {
   }
   .flag {
     width: 30px;
-    height: 25px;
-    margin-left: 10px;
+    height: 30px;
+    // margin-left: -18px;
+    
   }
   .language_container {
   display: flex;

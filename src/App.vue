@@ -35,7 +35,7 @@ export default {
 
 <template>
   <AppHeader @search="handleSearch"></AppHeader> <!-- Mostra l'header e gestisce l'evento di ricerca -->
-  <AppMain :results="state.results"> <!-- Mostra i risultati principali -->
+  <AppMain > 
     <AppFlags :language-code="state.languageCode"></AppFlags> <!-- Mostra le bandiere delle lingue -->
   </AppMain>
 </template>

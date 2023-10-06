@@ -6,6 +6,12 @@ export const state = reactive({
   movie_url: 'https://api.themoviedb.org/3/search/movie', // URL per cercare i film
   tv_url: 'https://api.themoviedb.org/3/search/tv', // URL per cercare le serie TV
   api_key: 'f1021dc4b8529be03e97c8bdedb0d64c', // La tua chiave API
+  it_flag: 'https://flagsapi.com/IT/flat/64.png',
+  fr_flag: 'https://flagsapi.com/FR/flat/64.png',
+  en_flag: 'https://flagsapi.com/GB/flat/64.png',
+  sp_flag: 'https://flagsapi.com/ES/flat/64.png',
+  ja_flag: 'https://flagsapi.com/JP/flat/64.png',
+  ko_flag: 'https://flagsapi.com/KR/flat/64.png',
   query: '', // La tua query di ricerca
   movieResults: [], // I risultati della ricerca dei film
   tvShowResults: [], // I risultati della ricerca delle serie TV
